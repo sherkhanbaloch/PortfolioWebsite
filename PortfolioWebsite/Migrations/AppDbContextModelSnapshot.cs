@@ -87,7 +87,11 @@ namespace PortfolioWebsite.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GitHub")
+                    b.Property<string>("GitHubTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GitHubURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -95,11 +99,19 @@ namespace PortfolioWebsite.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Instagram")
+                    b.Property<string>("InstagramTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LinkedIn")
+                    b.Property<string>("InstagramURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedInTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedInURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -177,6 +189,31 @@ namespace PortfolioWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tbl_Service");
+                });
+
+            modelBuilder.Entity("PortfolioWebsite.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tbl_User");
                 });
 
             modelBuilder.Entity("PortfolioWebsite.Models.Project", b =>

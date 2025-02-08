@@ -1,0 +1,93 @@
+﻿@using PortfolioWebsite.ViewModel
+
+@model PersonalInfoVM
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Personal Information</h4>
+            <p class="card-description">
+                -
+            </p>
+            <form class="forms-sample" method="post" enctype="multipart/form-data" asp-action="PersonalInfo" asp-controller="Admin">
+                <input asp-for="Id" hidden />
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Title"></label>
+                        <input class="form-control" asp-for="Title">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="SubTitle"></label>
+                        <input class="form-control" asp-for="SubTitle">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="HomeImage"></label>
+                        <input value="@ViewData["HomeImage"]" hidden name="OldHomeImg" />
+                        <input class="form-control file-upload-info" asp-for="HomeImage">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="AboutImage"></label>
+                        <input value="@ViewData["AboutImage"]" hidden name="OldAboutImg" />
+                        <input class="form-control file-upload-info" asp-for="AboutImage">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="Description"></label>
+                        <textarea class="form-control" rows="4" asp-for="Description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CVLink"></label>
+                        <input class="form-control" asp-for="CVLink">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Email"></label>
+                        <input class="form-control" asp-for="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="Location"></label>
+                        <input class="form-control" asp-for="Location">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="LinkedInTitle"></label>
+                        <input class="form-control" asp-for="LinkedInTitle">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="LinkedInURL"></label>
+                        <input class="form-control" asp-for="LinkedInURL">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="InstagramTitle"></label>
+                        <input class="form-control" asp-for="InstagramTitle">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="InstagramURL"></label>
+                        <input class="form-control" asp-for="InstagramURL">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="GitHubTitle"></label>
+                        <input class="form-control" asp-for="GitHubTitle">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="GitHubURL"></label>
+                        <input class="form-control" asp-for="GitHubURL">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Save Changes</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
