@@ -116,8 +116,117 @@ namespace PortfolioWebsite.Controllers
 
                 return RedirectToAction("Index", "Admin");
             }
-
             return View();
+        }
+
+        public IActionResult AllServices()
+        {
+            var service = db.Tbl_Service;
+            return View(service);
+        }
+
+        public IActionResult AddService()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddService(Service service)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tbl_Service.Add(service);
+                db.SaveChanges();
+
+                return RedirectToAction("AllServices", "Admin");
+            }
+            return View();
+        }
+
+        public IActionResult UpdateService(int id)
+        {
+            var data = db.Tbl_Service.Find(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateService(Service service)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tbl_Service.Update(service);
+                db.SaveChanges();
+
+                return RedirectToAction("AllServices", "Admin");
+            }
+            return View();
+        }
+
+        public IActionResult DeleteService(int Id)
+        {
+            var data = db.Tbl_Service.Find(Id);
+
+            if (data != null)
+            {
+                db.Remove(data);
+                db.SaveChanges();
+            }
+            return RedirectToAction("AllServices", "Admin");
+        }
+
+        public IActionResult AllCategories()
+        {
+            var category = db.Tbl_Category;
+            return View(category);
+        }
+
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCategory(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tbl_Category.Add(category);
+                db.SaveChanges();
+
+                return RedirectToAction("AllCategories", "Admin");
+            }
+            return View();
+        }
+
+        public IActionResult UpdateCategory(int id)
+        {
+            var data = db.Tbl_Category.Find(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tbl_Category.Update(category);
+                db.SaveChanges();
+
+                return RedirectToAction("AllCategories", "Admin");
+            }
+            return View();
+        }
+
+        public IActionResult DeleteCategory(int Id)
+        {
+            var data = db.Tbl_Category.Find(Id);
+
+            if (data != null)
+            {
+                db.Remove(data);
+                db.SaveChanges();
+            }
+            return RedirectToAction("AllCategories", "Admin");
         }
     }
 }
