@@ -1,13 +1,24 @@
-﻿ <!-- Hero Section -->
+﻿@using PortfolioWebsite.Models
+
+@model Contact
+
+@{
+    PersonalInfo info = ViewBag.PersonalInfo;
+    IEnumerable<Service> services = ViewBag.Services;
+    IEnumerable<Skill> skills = ViewBag.SKills;
+    var groupedProjects = ViewBag.Projects as List<IGrouping<Category, Project>>;
+}
+
+<!-- Hero Section -->
 <section id="home-section">
     <div class="container mt-5 border rounded-3 text-center shadow-lg bg-body">
         <div class="row p-4 pe-lg-0 pt-lg-5 align-items-start">
             <div class="col-md-8 p-3 p-lg-5 pt-lg-3 lh-2">
                 <h1 class="text-muted">
-                    <span class="text-primary">&lt;</span>Sher Khan Baloch<span class="text-primary">/&gt;</span>
+                    <span class="text-primary">&lt;</span>@info.Title<span class="text-primary">/&gt;</span>
                 </h1>
                 <br>
-                <h3 class="text-muted">Full Stack .NET Developer</h3>
+                <h3 class="text-muted">@info.SubTitle</h3>
                 <h5 class="text-muted">I am <span id="typed"></span></h5>
                 <br>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3">
@@ -16,7 +27,7 @@
                 </div>
             </div>
             <div class="col-md-4 align-items-center">
-                <img src="~/img/Developer-Icon.png" alt="" class="img-fluid">
+                <img src="~/images/@info.HomeImage" alt="" class="img-fluid">
             </div>
 
         </div>
@@ -28,33 +39,15 @@
     <div class="container col-xxl-8 px-4">
         <div class="row align-items-center g-5 py-5 ">
             <div class="col-lg-4 d-flex align-items-center justify-content-center">
-                <img src="~/img/about-me.png" class="d-block mx-lg-auto img-fluid w-75" alt="my-image">
+                <img src="~/images/@info.AboutImage" class="d-block mx-lg-auto img-fluid w-75" alt="my-image">
             </div>
             <div class="col-lg-8">
                 <h2 class=" lh-1 mb-3 text-muted">About Me</h2>
                 <hr>
-                <p>Hello World! 👋</p>
-                <p>
-                    I'm Sher Khan Baloch, a passionate software developer 💻 with a strong foundation in Java, SQL and C#.
-                    With over a year of hands-on experience in the field, I've honed my skills in crafting efficient Windows
-                    Forms Applications, creating dynamic ASP.NET web forms, and leveraging the power of SQL Server for robust
-                    database solutions.
-                </p>
-                <p>
-                    📊 My expertise extends to Crystal Reports for insightful data visualization, and I take pride in my
-                    logical problem-solving abilities. 🌟
-                </p>
-                <p>
-                    👨‍🎓 Currently pursuing a Bachelor of Science in Computer Science, I am committed to staying at the
-                    forefront of technology trends and delivering innovative software solutions.
-                </p>
-                <p>
-                    🚀 Let's connect and explore how my skills and enthusiasm can contribute to your team's success, or
-                    simply discuss the ever-evolving landscape of software development. Open to exciting job prospects! 🌐
-                </p>
+                <p>@info.Description</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <button type="button" class="btn btn-primary px-4 me-md-2">
-                        <a href="https://drive.google.com/file/d/1oJMWnjYUIBsqkgEpj0pd4Dy2qvASpMvo/view?usp=sharing"
+                        <a href="@info.CVLink"
                            target="_blank">
                             Download
                             CV
@@ -72,37 +65,33 @@
         <h2 class="lh-1 mb-3 text-muted">Services</h2>
         <hr>
         <div class="row gy-4 gy-xl-0">
-            <div class="col-12 col-sm-6 col-xl-4">
-                <div class="card border-0 border-bottom border-primary shadow-sm">
-                    <div class="card-body text-center p-4 p-xxl-5">
-                        <span>
-                            <i class="fa-solid fa-computer text-primary mb-4 fs-1"></i>
-                        </span>
-                        <h4 class="mb-4">Desktop Applications</h4>
+            @foreach (var item in services)
+            {
+                <div class="col-12 col-sm-6 col-xl-4">
+                    <div class="card border-0 border-bottom border-primary shadow-sm">
+                        <div class="card-body text-center p-4 p-xxl-5">
+                            <span>
+                                <i class="@item.ServiceImage text-primary mb-4 fs-1"></i>
+                            </span>
+                            <h4 class="mb-4">@item.ServiceImage</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-sm-6 col-xl-4">
-                <div class="card border-0 border-bottom border-primary shadow-sm">
-                    <div class="card-body text-center p-4 p-xxl-5">
-                        <span>
-                            <i class="fa-solid fa-globe text-primary mb-4 fs-1"></i>
-                        </span>
-                        <h4 class="mb-4">Web Applications</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-xl-4">
-                <div class="card border-0 border-bottom border-primary shadow-sm">
-                    <div class="card-body text-center p-4 p-xxl-5">
-                        <span>
-                            <i class="fa-solid fa-display text-primary mb-4 fs-1"></i>
-                        </span>
-                        <h4 class="mb-4">Website Design</h4>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
+    </div>
+</section>
+
+
+<!-- Skills Section -->
+<section id="skills-section" class="py-5 py-xl-8">
+    <div class="container overflow-hidden">
+        <h2 class="lh-1 mb-3 text-muted">Skills</h2>
+        <hr>
+            @foreach (var item in skills)
+            {
+            <button type="button" class="btn btn-secondary">@item.SkillName</button>
+            }
     </div>
 </section>
 
@@ -111,178 +100,24 @@
     <div class="container py-5">
         <h2 class="lh-1 mb-3 text-muted">Portfolio</h2>
         <hr>
-        <h3 class="text-muted my-3">Desktop Applications</h3>
-        <div class="row">
-            <div class="col-md-4 col-sm-12 mx-auto my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Academy-Management-System.png" class="card-img-top"
-                         alt="Academy-Management-System">
-                    <div class="card-body">
-                        <p class="card-text text-center">Academy Management System</p>
+        @foreach (var category in groupedProjects)
+        {
+            <h3 class="text-muted my-3">@category.Key.CategoryName</h3>
+            <div class="row">
+                @foreach (var project in category)
+                {
+                    <div class="col-md-4 col-sm-12 mx-auto my-3">
+                        <div class="card border-0 border-bottom border-secondary shadow-sm">
+                            <img src="~/images/projects/@project.ProjectImage" class="card-img-top"
+                                 alt="@project.ProjectName">
+                            <div class="card-body">
+                                <p class="card-text text-center">@project.ProjectName</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Business-Management-System.png" class="card-img-top"
-                         alt="Business-Management-System">
-                    <div class="card-body">
-                        <p class="card-text text-center">Business Management System</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Exam-Management-System.png" class="card-img-top"
-                         alt="Exam-Management-System">
-                    <div class="card-body">
-                        <p class="card-text text-center">Exam Management System</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Expenses-Management-System.png" class="card-img-top"
-                         alt="Expenses-Management-System ">
-                    <div class="card-body">
-                        <p class="card-text text-center">Expenses Management System</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Invoice-Screen.png" class="card-img-top" alt="Invoice-Screen">
-                    <div class="card-body">
-                        <p class="card-text text-center">Billing Software</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Point-of-Sale.png" class="card-img-top" alt="Point-of-Sale">
-                    <div class="card-body">
-                        <p class="card-text text-center">Point of Sale</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Quiz-Game.png" class="card-img-top" alt="Quiz-Game ">
-                    <div class="card-body">
-                        <p class="card-text text-center">Quiz Game</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/School-Management-System.png" class="card-img-top"
-                         alt="School-Management-System">
-                    <div class="card-body">
-                        <p class="card-text text-center">School Management System</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Desktop Applications/Sindhi-Software.png" class="card-img-top" alt="Sindhi-Software">
-                    <div class="card-body">
-                        <p class="card-text text-center">Sindhi Language Software</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <h3 class="text-muted my-3">Web Applications</h3>
-        <div class="row">
-            <div class="col-md-4 col-sm-12 mx-auto my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Business-Management-System.png" class="card-img-top"
-                         alt="Business-Management-System">
-                    <div class="card-body">
-                        <p class="card-text text-center">Business Management System</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Calculator-World.png" class="card-img-top" alt="Calculator-World">
-                    <div class="card-body">
-                        <p class="card-text text-center">Calculator World</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Expenses-Management-System.png" class="card-img-top"
-                         alt="Exam-Management-System">
-                    <div class="card-body">
-                        <p class="card-text text-center">Expenses Management System</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Marks-Sheet-Generator.png" class="card-img-top"
-                         alt="Marks-Sheet-Generator">
-                    <div class="card-body">
-                        <p class="card-text text-center">Marks Sheet Generator</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Online-Food-Ordering.png" class="card-img-top" alt="Online-Food-Ordering">
-                    <div class="card-body">
-                        <p class="card-text text-center">Online Food Ordering</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Online-Job-Portal.png" class="card-img-top" alt="Online-Job-Portal">
-                    <div class="card-body">
-                        <p class="card-text text-center">Online Job Portal</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Paragraph-Master.png" class="card-img-top" alt="Paragraph-Master">
-                    <div class="card-body">
-                        <p class="card-text text-center">Paragraph Master</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/Quiz-Game.png" class="card-img-top" alt="Quiz-Game">
-                    <div class="card-body">
-                        <p class="card-text text-center">Quiz Game</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 my-3">
-                <div class="card border-0 border-bottom border-secondary shadow-sm">
-                    <img src="~/img/Web Applications/CodeX.png" class="card-img-top" alt="CodeX">
-                    <div class="card-body">
-                        <p class="card-text text-center">CodeX</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        }
     </div>
 </section>
 
@@ -294,44 +129,54 @@
         <div class="row">
             <div class="col-md-5 p-5">
                 <p>
-                    <i class="fa-solid fa-envelope mx-2"></i><a href="mailto:sherkhanbaloch@outlook.com">sherkhanbaloch@outlook.com</a>
+                    <i class="fa-solid fa-envelope mx-2"></i><a href="mailto:@info.Email">@info.Email</a>
                 </p>
-                <p><i class="fa-solid fa-location-dot mx-2"></i>Larkana, Sindh, Pakistan</p>
+                <p><i class="fa-solid fa-location-dot mx-2"></i>@info.Location</p>
                 <p>
-                    <i class="fa-brands fa-linkedin mx-2"></i><a href="https://www.linkedin.com/in/sherkhanbaloch/">
-                        Sher
-                        Khan Baloch
+                    <i class="fa-brands fa-linkedin mx-2"></i><a href="@info.LinkedInURL">
+                        @info.LinkedInTitle
                     </a>
                 </p>
                 <p>
-                    <i class="fa-brands fa-instagram mx-2"></i><a href="https://www.instagram.com/sherbalochcs/">
-                        Sher Khan
-                        Baloch
+                    <i class="fa-brands fa-instagram mx-2"></i><a href="@info.InstagramURL">
+                        @info.InstagramTitle
                     </a>
                 </p>
                 <p>
-                    <i class="fa-brands fa-github mx-2"></i><a href="https://github.com/sherkhanbaloch">Sher Khan Baloch</a>
+                    <i class="fa-brands fa-github mx-2"></i><a href="@info.GitHubURL">@info.GitHubTitle</a>
                 </p>
             </div>
             <div class="col-md-7 p-5">
-                <form action="https://formspree.io/f/xaykeepy" method="POST" class="row g-3">
+                <form method="POST" asp-action="SendMessage" asp-controller="Home" class="row g-3">
                     <div class="col-md-6">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" required>
                     </div>
                     <div class="col-12">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        <label asp-for="Message" class="form-label"></label>
+                        <textarea class="form-control" asp-for="Message" rows="3" required></textarea>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary" onclick="ShowMessage()">Send Message</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+     function ShowMessage() {
+         Swal.fire({
+           title: "Message",
+           text: @ViewData["MessageStatus"],
+           icon: "success"
+         });
+    }
+</script>

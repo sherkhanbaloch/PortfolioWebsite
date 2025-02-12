@@ -1,0 +1,24 @@
+﻿@using PortfolioWebsite.Models
+
+@model Skill
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Add Skill</h4>
+            <p class="card-description">
+                -
+            </p>
+            <form class="forms-sample" method="post" asp-action="AddSkill" asp-controller="Admin">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="SkillName"></label>
+                        <input class="form-control" asp-for="SkillName">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Add Skill</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

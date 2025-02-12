@@ -15,6 +15,7 @@ namespace PortfolioWebsite.Data
         public DbSet<PersonalInfo> Tbl_PersonalInfo { get; set; }
         public DbSet<Project> Tbl_Project { get; set; }
         public DbSet<Service> Tbl_Service { get; set; }
+        public DbSet<Skill> Tbl_Skill { get; set; }
         public DbSet<User> Tbl_User { get; set; }
     }
 }

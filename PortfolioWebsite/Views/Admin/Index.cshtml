@@ -4,7 +4,7 @@
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                 <h3 class="font-weight-bold">Welcome Aamir</h3>
                 <h6 class="font-weight-normal mb-0">
-                    Your Portfolio Is Running Smoothly! You have <span class="text-primary">0 Unread Messages.</span>
+                    Your Portfolio Is Running Smoothly! You have <span class="text-primary">@ViewData["TotalMessages"] Unread Messages.</span>
                 </h6>
             </div>
 
@@ -36,7 +36,7 @@
                 <div class="card card-tale">
                     <div class="card-body">
                         <p class="mb-4">Total Categories</p>
-                        <p class="fs-30 mb-2">0</p>
+                        <p class="fs-30 mb-2">@ViewData["TotalCategories"]</p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <div class="card card-dark-blue">
                     <div class="card-body">
                         <p class="mb-4">Total Projects</p>
-                        <p class="fs-30 mb-2">0</p>
+                        <p class="fs-30 mb-2">@ViewData["TotalProjects"]</p>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="card card-light-danger">
                     <div class="card-body">
                         <p class="mb-4">Offered Services</p>
-                        <p class="fs-30 mb-2">0</p>
+                        <p class="fs-30 mb-2">@ViewData["TotalServices"]</p>
                     </div>
                 </div>
             </div>

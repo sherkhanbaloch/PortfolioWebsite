@@ -14,6 +14,6 @@ namespace PortfolioWebsite.Models
 
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public virtual Category Categories { get; set; }
+        public virtual Category? Categories { get; set; }
     }
 }
