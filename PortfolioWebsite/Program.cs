@@ -7,6 +7,7 @@ builder.Services.AddMvc();
 
 var con = builder.Configuration.GetConnectionString("dbcs");
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(con));
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -16,6 +17,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

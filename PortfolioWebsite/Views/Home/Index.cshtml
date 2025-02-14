@@ -1,4 +1,5 @@
 ﻿@using PortfolioWebsite.Models
+@using System.Web;
 
 @model Contact
 
@@ -44,7 +45,7 @@
             <div class="col-lg-8">
                 <h2 class=" lh-1 mb-3 text-muted">About Me</h2>
                 <hr>
-                <p>@info.Description</p>
+                @Html.Raw(HttpUtility.HtmlDecode(info.Description))
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <button type="button" class="btn btn-primary px-4 me-md-2">
                         <a href="@info.CVLink"
@@ -73,7 +74,7 @@
                             <span>
                                 <i class="@item.ServiceImage text-primary mb-4 fs-1"></i>
                             </span>
-                            <h4 class="mb-4">@item.ServiceImage</h4>
+                            <h4 class="mb-4">@item.ServiceName</h4>
                         </div>
                     </div>
                 </div>
@@ -82,16 +83,15 @@
     </div>
 </section>
 
-
 <!-- Skills Section -->
 <section id="skills-section" class="py-5 py-xl-8">
     <div class="container overflow-hidden">
         <h2 class="lh-1 mb-3 text-muted">Skills</h2>
         <hr>
-            @foreach (var item in skills)
-            {
-            <button type="button" class="btn btn-secondary">@item.SkillName</button>
-            }
+        @foreach (var item in skills)
+        {
+            <button type="button" class="btn btn-secondary m-1">@item.SkillName</button>
+        }
     </div>
 </section>
 
@@ -106,7 +106,7 @@
             <div class="row">
                 @foreach (var project in category)
                 {
-                    <div class="col-md-4 col-sm-12 mx-auto my-3">
+                    <div class="col-md-4 col-sm-12 my-3">
                         <div class="card border-0 border-bottom border-secondary shadow-sm">
                             <img src="~/images/projects/@project.ProjectImage" class="card-img-top"
                                  alt="@project.ProjectName">

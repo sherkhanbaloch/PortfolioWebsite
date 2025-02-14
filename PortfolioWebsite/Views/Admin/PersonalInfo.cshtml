@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label asp-for="Description"></label>
-                        <textarea class="form-control" rows="4" asp-for="Description"></textarea>
+                        <textarea class="form-control" rows="4" asp-for="Description" id="editor"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -91,3 +91,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

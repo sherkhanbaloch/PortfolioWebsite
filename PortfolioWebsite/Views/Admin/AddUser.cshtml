@@ -1,0 +1,34 @@
+﻿@using PortfolioWebsite.ViewModel
+
+@model UserVM
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Add New User</h4>
+            <p class="card-description">
+                -
+            </p>
+            <form class="forms-sample" method="post" enctype="multipart/form-data" asp-action="AddUser" asp-controller="Admin">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="UserName"></label>
+                        <input class="form-control" asp-for="UserName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Password"></label>
+                        <input class="form-control" asp-for="Password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Image"></label>
+                        <input class="form-control file-upload-info" asp-for="Image">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Save User</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
